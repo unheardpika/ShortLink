@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ShortLink</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700"
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+
+  <body style='font-family: "Space Grotesk", "Noto Sans", sans-serif;' class="bg-white min-h-screen flex flex-col">
+    <header class="flex items-center justify-between border-b border-[#f1f2f4] px-10 py-3">
+      <div class="flex items-center gap-4 text-[#121416]">
+        <div class="size-4">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+          </svg>
+        </div>
+        <h2 class="text-lg font-bold tracking-[-0.015em]">ShortLink</h2>
+      </div>
+      <div class="flex gap-8 items-center">
+        <div class="flex gap-9">
+          <a class="text-sm font-medium" href="#">Features</a>
+          <a class="text-sm font-medium" href="{{ url_for('about') }}">About</a>
+          <a class="text-sm font-medium" href="{{ url_for('signin') }}">Sign In</a>
+        </div>
+        <a href="{{ url_for('signup') }}">
+          <button class="h-10 px-4 bg-[#528bc5] text-white text-sm font-bold rounded-lg">
+            Sign Up
+          </button>
+        </a>
+      </div>
+    </header>
+
+    <main class="flex-1 flex justify-center px-4 py-10">
+      <div class="w-full max-w-[960px] text-center">
+        <!-- Hero Section -->
+        <section
+          class="min-h-[480px] bg-cover bg-center bg-no-repeat rounded-lg p-6 flex flex-col items-center justify-center gap-6"
+          style='background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAKQXyq8PEXLL1fDLJ9hbpFptz5MDMOYENYe2AitPwWjCIt_6C0-0pHXtbeka9BO670byJROB2xriOxUvvM8G9IzG_fVHDjgCx144te6Z2v_tUhCMrwchC75_Fa5GamJW0r-O2y_7RWQzBicGpcEPyxpE1BZpeIoMDlq9k_E5IAnUY7b0G6Q3UTl0z2HBx--djGHvpypz4ee6mAbvZKIqs8xXqfacvUcJf2J8diiqAI82RndXTOH55dh1j7nbO9XnlftNxbTLvb5q4S");'
+        >
+          <h1 class="text-4xl text-white font-black tracking-tight">Shorten your links</h1>
+          <p class="text-white text-base max-w-[480px]">
+            ShortLink is a URL shortening service that allows you to create short, memorable links for your long URLs.
+          </p>
+
+          <!-- Shorten Form -->
+          <form action="{{ url_for('shorten') }}" method="POST" class="w-full max-w-[480px]">
+            <div class="flex h-14">
+              <input
+                type="url"
+                name="original_url"
+                placeholder="Paste a long URL"
+                required
+                class="flex-1 rounded-l-lg border border-[#dde0e3] px-3 text-sm placeholder-[#6a7581] focus:outline-none"
+              />
+              <button
+                type="submit"
+                class="bg-[#528bc5] text-white font-bold text-sm px-4 rounded-r-lg"
+              >
+                Shorten
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <!-- Result Section -->
+        {% if short_url %}
+        <div class="mt-6 flex flex-col items-center gap-3">
+          <label class="w-full max-w-[480px] text-left text-[#121416] text-base font-medium">
+            Shortened URL
+          </label>
+          <input
+            readonly
+            value="{{ short_url }}"
+            class="form-input w-full max-w-[480px] border border-[#dde0e3] px-3 h-12 rounded-lg text-base text-[#121416]"
+          />
+          <button
+            onclick="navigator.clipboard.writeText('{{ short_url }}')"
+            class="bg-[#f1f2f4] text-[#121416] font-bold text-sm px-4 py-2 rounded-lg"
+          >
+            Copy
+          </button>
+        </div>
+        {% endif %}
+      </div>
+    </main>
+  </body>
+</html>
+
+
