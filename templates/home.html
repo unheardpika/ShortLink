@@ -4,8 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ShortLink</title>
-
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
     <link
       rel="stylesheet"
@@ -13,14 +11,9 @@
       onload="this.rel='stylesheet'"
       href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700"
     />
-
-    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
-
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   </head>
-
   <body style='font-family: "Space Grotesk", "Noto Sans", sans-serif;' class="bg-white min-h-screen flex flex-col">
     <header class="flex items-center justify-between border-b border-[#f1f2f4] px-10 py-3">
       <div class="flex items-center gap-4 text-[#121416]">
@@ -44,10 +37,8 @@
         </a>
       </div>
     </header>
-
     <main class="flex-1 flex justify-center px-4 py-10">
       <div class="w-full max-w-[960px] text-center">
-        <!-- Hero Section -->
         <section
           class="min-h-[480px] bg-cover bg-center bg-no-repeat rounded-lg p-6 flex flex-col items-center justify-center gap-6"
           style='background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAKQXyq8PEXLL1fDLJ9hbpFptz5MDMOYENYe2AitPwWjCIt_6C0-0pHXtbeka9BO670byJROB2xriOxUvvM8G9IzG_fVHDjgCx144te6Z2v_tUhCMrwchC75_Fa5GamJW0r-O2y_7RWQzBicGpcEPyxpE1BZpeIoMDlq9k_E5IAnUY7b0G6Q3UTl0z2HBx--djGHvpypz4ee6mAbvZKIqs8xXqfacvUcJf2J8diiqAI82RndXTOH55dh1j7nbO9XnlftNxbTLvb5q4S");'
@@ -56,8 +47,6 @@
           <p class="text-white text-base max-w-[480px]">
             ShortLink is a URL shortening service that allows you to create short, memorable links for your long URLs.
           </p>
-
-          <!-- Shorten Form -->
           <form action="{{ url_for('shorten') }}" method="POST" class="w-full max-w-[480px]">
             <div class="flex h-14">
               <input
@@ -76,8 +65,6 @@
             </div>
           </form>
         </section>
-
-        <!-- Result Section -->
         {% if short_url %}
         <div class="mt-6 flex flex-col items-center gap-3">
           <label class="w-full max-w-[480px] text-left text-[#121416] text-base font-medium">
